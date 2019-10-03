@@ -2,6 +2,7 @@ package com.automosen.jsonposter.data.network
 
 import com.automosen.jsonposter.util.ApiException
 import retrofit2.Response
+import java.lang.IllegalStateException
 
 abstract class SafeApiRequest{
 

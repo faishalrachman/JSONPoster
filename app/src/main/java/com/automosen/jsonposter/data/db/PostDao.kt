@@ -14,4 +14,8 @@ interface PostDao{
 
     @Query("SELECT * FROM post")
     fun getPosts() : LiveData<List<Post>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addPost(post : Post)
+
 }

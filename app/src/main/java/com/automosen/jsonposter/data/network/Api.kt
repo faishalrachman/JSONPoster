@@ -1,21 +1,25 @@
 package com.automosen.jsonposter.data.network
 
 import com.automosen.jsonposter.data.db.entities.Post
-import com.automosen.jsonposter.data.network.responses.PostResponse
+import com.automosen.jsonposter.data.network.responses.PostsResponse
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.Field
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface Api {
 
-    @POST()
-    suspend fun getPosts(
+
+    @POST("posts")
+    suspend fun addPost(
         @Body name : Post
-    ) : Response<PostResponse>
+    ) : Response<Post>
+
+    @GET("posts")
+    suspend fun getPosts() : Response<List<Post>>
 
     companion object {
         operator fun invoke(networkConnectionInterceptor: NetworkConnectionInterceptor) : Api{
