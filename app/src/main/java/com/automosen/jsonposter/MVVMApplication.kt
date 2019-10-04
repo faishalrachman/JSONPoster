@@ -33,7 +33,7 @@ class MVVMApplication : Application(), KodeinAware {
 //        bind() from provider {PostWorker(instance(),instance())   }
         bind() from provider { PostRepository(instance(), instance(), instance()) }
         bind() from provider { PostsViewModelFactory(instance()) }
-        bind() from provider { CreatePostViewModelFactory(instance(),instance()) }
+        bind() from provider { CreatePostViewModelFactory(instance()) }
         bind() from provider { PostWorkerFactory(instance()) }
 
     }

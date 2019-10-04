@@ -36,6 +36,7 @@ class CreatePostViewModel(
 
         Coroutines.main {
             try {
+//                repository.addOfflinePost(title!!,body!!)
                 repository.addPost(title!!,body!!)
                 createPostInterface?.onSuccess()
             } catch (e: ApiException){
@@ -58,12 +59,10 @@ class CreatePostViewModel(
                         TimeUnit.MILLISECONDS)
                     .build()
                 WorkManager.getInstance(view.context.applicationContext).enqueue(request)
+
                 createPostInterface?.onPostPone()
             }
         }
-
-
-
 
     }
 

@@ -20,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-const val MINIMUM_INTERVAL = 2 // 5 menit
+const val MINIMUM_INTERVAL = 300 // 5 menit
 
 class PostRepository(
     private val api: Api,
