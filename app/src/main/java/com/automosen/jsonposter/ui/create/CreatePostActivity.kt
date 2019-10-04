@@ -41,6 +41,12 @@ class CreatePostActivity : AppCompatActivity(), KodeinAware , CreatePostInterfac
         toast(message)
     }
 
+    override fun onPostPone() {
+        progress_bar.hide()
+        toast("Your post is postponed until the internet is connected")
+        finish()
+    }
+
     override fun onRequest() {
         progress_bar.show()
     }

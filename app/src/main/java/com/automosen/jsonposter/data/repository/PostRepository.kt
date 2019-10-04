@@ -1,12 +1,18 @@
 package com.automosen.jsonposter.data.repository
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.work.Configuration
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.automosen.jsonposter.data.db.AppDatabase
 import com.automosen.jsonposter.data.db.entities.Post
 import com.automosen.jsonposter.data.network.Api
 import com.automosen.jsonposter.data.network.SafeApiRequest
 import com.automosen.jsonposter.data.preferences.PreferenceProvider
+import com.automosen.jsonposter.data.worker.PostWorker
+import com.automosen.jsonposter.data.worker.PostWorkerFactory
 import com.automosen.jsonposter.util.Coroutines
 import com.automosen.jsonposter.util.now
 import com.automosen.jsonposter.util.timediff
@@ -14,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-const val MINIMUM_INTERVAL = 300 // 5 menit
+const val MINIMUM_INTERVAL = 2 // 5 menit
 
 class PostRepository(
     private val api: Api,
@@ -37,7 +43,7 @@ class PostRepository(
     }
     suspend fun addPost(title : String, body: String){
         return withContext(Dispatchers.IO){
-            val response = apiRequest{api.addPost(Post(null,null,title,body))}
+            val response = apiRequest { api.addPost(Post(null, null, title, body)) }
             db.getPostDao().addPost(response)
         }
     }

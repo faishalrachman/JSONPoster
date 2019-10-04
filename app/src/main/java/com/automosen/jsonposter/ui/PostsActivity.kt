@@ -8,8 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.Configuration
+import androidx.work.WorkManager
 import com.automosen.jsonposter.R
 import com.automosen.jsonposter.data.db.entities.Post
+import com.automosen.jsonposter.data.worker.PostWorkerFactory
 import com.automosen.jsonposter.databinding.ActivityMainBinding
 import com.automosen.jsonposter.ui.create.CreatePostActivity
 import com.automosen.jsonposter.util.Coroutines
@@ -28,7 +31,6 @@ class PostsActivity : AppCompatActivity() , KodeinAware {
     override val kodein: Kodein by kodein()
 
     private val factory : PostsViewModelFactory by instance()
-//    private val viewModel : PostsViewModel by instance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,7 @@ class PostsActivity : AppCompatActivity() , KodeinAware {
 
         binding.viewmodel = viewModel
         bindUI(viewModel)
+
     }
 
 
