@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
 
+<layout>
     <data>
-
         <variable
             name="viewmodel"
             type="com.automosen.jsonposter.ui.create.CreatePostViewModel" />
     </data>
-
     <RelativeLayout
+        android:id="@+id/root_layout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp"
-        tools:context=".ui.create.CreatePostFragment">
+        tools:context=".ui.create.CreatePostActivity">
 
         <TextView
             android:id="@+id/new_post_title"
@@ -40,11 +40,10 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <EditText
-                android:text="@={viewmodel.title}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/write_your_post_title"
-                 />
+                android:text="@={viewmodel.title}" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -63,9 +62,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/create"
+                android:onClick="@{viewmodel::onClickCreate}"
                 android:textAllCaps="false" />
+
         </LinearLayout>
 
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
     </RelativeLayout>
 </layout>

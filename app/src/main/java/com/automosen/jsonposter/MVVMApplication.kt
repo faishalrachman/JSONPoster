@@ -8,9 +8,8 @@ import com.automosen.jsonposter.data.network.Api
 import com.automosen.jsonposter.data.network.NetworkConnectionInterceptor
 import com.automosen.jsonposter.data.preferences.PreferenceProvider
 import com.automosen.jsonposter.data.repository.PostRepository
-import com.automosen.jsonposter.data.worker.PostWorker
 import com.automosen.jsonposter.data.worker.PostWorkerFactory
-import com.automosen.jsonposter.ui.PostsViewModelFactory
+import com.automosen.jsonposter.ui.fetch.PostsViewModelFactory
 import com.automosen.jsonposter.ui.create.CreatePostViewModelFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -22,6 +21,7 @@ import org.kodein.di.generic.singleton
 
 class MVVMApplication : Application(), KodeinAware {
     override val kodein: Kodein = Kodein.lazy {
+
         import(androidXModule(this@MVVMApplication))
         bind() from singleton { NetworkConnectionInterceptor(instance()) }
         bind() from singleton { Api(instance()) }
@@ -29,14 +29,13 @@ class MVVMApplication : Application(), KodeinAware {
         bind() from singleton { PreferenceProvider(instance()) }
 
 
-
-//        bind() from provider {PostWorker(instance(),instance())   }
         bind() from provider { PostRepository(instance(), instance(), instance()) }
         bind() from provider { PostsViewModelFactory(instance()) }
         bind() from provider { CreatePostViewModelFactory(instance()) }
         bind() from provider { PostWorkerFactory(instance()) }
 
     }
+
     private val factory : PostWorkerFactory by instance()
 
     private fun initWorkManager() {

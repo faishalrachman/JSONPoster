@@ -15,14 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.create.CreatePostActivity"></activity>
-        <activity android:name=".ui.PostsActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"

@@ -12,7 +12,7 @@ interface PostDao{
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun savePosts(posts : List<Post>)
 
-    @Query("SELECT * FROM post")
+    @Query("SELECT * FROM post ORDER BY id DESC")
     fun getPosts() : LiveData<List<Post>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

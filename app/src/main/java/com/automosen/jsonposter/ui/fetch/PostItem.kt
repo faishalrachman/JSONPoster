@@ -1,4 +1,4 @@
-package com.automosen.jsonposter.ui
+package com.automosen.jsonposter.ui.fetch
 
 import com.automosen.jsonposter.R
 import com.automosen.jsonposter.data.db.entities.Post

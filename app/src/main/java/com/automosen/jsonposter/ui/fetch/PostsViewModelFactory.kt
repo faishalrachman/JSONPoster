@@ -1,4 +1,4 @@
-package com.automosen.jsonposter.ui
+package com.automosen.jsonposter.ui.fetch
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -14,9 +14,8 @@ class NetworkConnectionInterceptor(
     private val applicationContext = context.applicationContext
 
     override fun intercept(chain: Interceptor.Chain): Response {
-
-        if (!isInternetAvailable(applicationContext))
-            throw NoInternetException("There is no internet available")
+            if (!isInternetAvailable(applicationContext))
+                throw NoInternetException("There is no internet available")
 
         return chain.proceed(chain.request())
     }
